@@ -1,0 +1,206 @@
+/* General styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f1f5f9;
+  margin: 0;
+  padding: 0;
+  color: #111827;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  color: #1f2937;
+}
+
+button {
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+/* Welcome section */
+.welcome-section {
+  text-align: center;
+  padding: 4rem 1rem;
+  background-color: #3b82f6;
+  color: white;
+}
+
+#welcome h1 {
+  margin-bottom: 1rem;
+}
+
+#welcome button,
+#planBtn {
+  background-color: white;
+  color: #3b82f6;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  border: 2px solid #3b82f6;
+}
+
+#welcome button:hover,
+#planBtn:hover {
+  background-color: #1e40af;
+  color: white;
+}
+
+/* Calendar section */
+.calendar-section {
+  text-align: center;
+  padding: 2rem;
+  background-color: #e0f2fe;
+  display: none;
+}
+
+.calendar-section input[type="date"] {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+#viewTasksBtn {
+  margin-left: 1rem;
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+}
+
+#viewTasksBtn:hover {
+  background-color: #1d4ed8;
+}
+
+.view-plans {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  text-align: left;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+}
+
+.view-plans ul {
+  padding-left: 1rem;
+}
+
+/* Planner section */
+.planner-container {
+  display: none;
+  padding: 2rem;
+  background-color: #fff;
+  border-top: 1px solid #e5e7eb;
+}
+
+#planner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.time-block {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hour {
+  width: 80px;
+  font-weight: bold;
+}
+
+.description {
+  flex-grow: 1;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  resize: vertical;
+}
+
+/* Time coloring */
+.past {
+  background-color: #f3f4f6;
+}
+
+.present {
+  background-color: #fef9c3;
+}
+
+.future {
+  background-color: #ecfdf5;
+}
+
+/* Action buttons inside planner */
+.saveBtn, .deleteBtn {
+  padding: 6px 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.saveBtn {
+  background-color: #2563eb;
+  color: white;
+}
+
+.saveBtn:hover {
+  background-color: #1d4ed8;
+}
+
+.deleteBtn {
+  background-color: #ef4444;
+  color: white;
+  margin-left: 4px;
+}
+
+.deleteBtn:hover {
+  background-color: #dc2626;
+}
+
+.planner-actions {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+#saveAll, #closePlanner {
+  padding: 0.75rem 1.25rem;
+  margin: 0 0.5rem;
+  font-weight: bold;
+  background-color: #3b82f6;
+  color: white;
+}
+
+#closePlanner {
+  background-color: #6b7280;
+}
+
+#saveAll:hover {
+  background-color: #2563eb;
+}
+
+#closePlanner:hover {
+  background-color: #4b5563;
+}
+
+/* Notification */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #10b981;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}

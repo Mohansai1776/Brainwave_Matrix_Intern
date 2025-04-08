@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>24-Hour Day Planner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="welcome-section">
+    <h1>Welcome to Day Planner</h1>
+    <button id="planBtn">Start Planning</button>
+  </div>
+
+  <div class="calendar-section" id="calendarSection">
+    <h2>Select a Date</h2>
+    <input type="date" id="datePicker" />
+    <button id="viewTasksBtn">View Tasks</button>
+    <div id="viewPlans" class="view-plans"></div>
+  </div>
+
+  <div class="planner-container" id="plannerContainer">
+    <h2 id="selectedDate"></h2>
+    <div id="planner"></div>
+    <div class="planner-actions">
+      <button id="saveAll">Save All Tasks</button>
+      <button id="closePlanner">Close</button>
+    </div>
+  </div>
+
+  <div id="notification" class="notification">✅ Task Saved!</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
