@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopSmart - Home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 1em;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #764ba2;
+    }
+
+    .welcome {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .welcome h2 {
+      font-size: 3.5em;
+      margin-bottom: 0.5em;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .welcome button {
+      padding: 1em 2.5em;
+      font-size: 1.2em;
+      background-color: #ffffff;
+      color: #764ba2;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .welcome button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .product-list {
+      display: none;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2em;
+      padding: 3em;
+      background-color: #f8f9fa;
+    }
+
+    .product {
+      background-color: white;
+      padding: 1.5em;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1em;
+    }
+
+    .product h3 {
+      margin: 0.5em 0;
+      color: #333;
+      font-size: 1.2em;
+    }
+
+    .product p {
+      color: #666;
+      margin: 0.5em 0;
+    }
+
+    .product span {
+      color: #666;
+      margin: 0.5em 0;
+    }
+
+    .product button {
+      background-color: #764ba2;
+      color: white;
+      border: none;
+      padding: 0.8em 1.5em;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 1em;
+    }
+
+    .product button:hover {
+      background-color: #667eea;
+    }
+
+    #cart-notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #28a745;
+      color: white;
+      padding: 1em 2em;
+      border-radius: 25px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: none;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ShopSmart</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="welcome" id="welcome">
+      <h2>Welcome to ShopSmart</h2>
+      <button onclick="startShopping()">Explore</button>
+    </section>
+
+    <section id="products" class="product-list">
+      <!-- Products will be dynamically added here -->
+    </section>
+  </main>
+
+  <div id="cart-notification"></div>
+
+  <script>
+    const products = [
+  { id: 1, name: 'Wireless Headphones', price: 59.99, description: 'High-quality wireless headphones for music lovers.', image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500' },
+  { id: 2, name: 'Smart Watch', price: 89.99, description: 'Track your fitness and notifications on the go.', image: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500' },
+  { id: 3, name: 'Bluetooth Speaker', price: 39.99, description: 'Portable Bluetooth speaker for powerful sound.', image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500' },
+  { id: 4, name: 'Fitness Tracker', price: 29.99, description: 'Monitor your daily activity and health stats.', image: 'https://images.unsplash.com/photo-1576243345690-4e4b79b63288?w=500' },
+  { id: 5, name: 'Laptop Air', price: 899.99, description: 'Lightweight laptop with high performance.', image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500' },
+];
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function startShopping() {
+      document.getElementById('welcome').style.display = 'none';
+      document.getElementById('products').style.display = 'grid';
+      renderProducts();
+    }
+
+    function showNotification(message) {
+      const notification = document.getElementById('cart-notification');
+      notification.textContent = message;
+      notification.style.display = 'block';
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 2000);
+    }
+
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      cart.push(product);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      showNotification('Item added to cart!');
+    }
+
+    function renderProducts() {
+      const productList = document.querySelector('.product-list');
+      productList.innerHTML = '';
+      products.forEach(product => {
+        productList.innerHTML += `
+          <div class="product">
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <span>Price: $${product.price.toFixed(2)}</span>
+            <button onclick="addToCart(${product.id})">Add to Cart</button>
+          </div>
+        `;
+      });
+    }
+
+    // Initial render (if user has already clicked Explore)
+    if (document.getElementById('welcome').style.display === 'none') {
+      renderProducts();
+    }
+  </script>
+</body>
+</html>
